@@ -1,0 +1,26 @@
+[
+  {
+    "dishId": "dish-1",
+    "name": "Pizza",
+    "desc": "A delicious, freshly baked pizza with your favorite toppings.",
+    "price": 199,
+    "currency": "INR",
+    "thumbnail": "https://placehold.co/600x400/F39C12/white?text=Pizza",
+    "model": {
+      "glb": "models/pizza-Optimized.glb",
+      "usdz": "models/Pizza.usdz"
+    }
+  },
+  {
+    "dishId": "dish-2",
+    "name": "Biryani",
+    "desc": "Aromatic and flavorful biryani, a true classic.",
+    "price": 249,
+    "currency": "INR",
+    "thumbnail": "https://placehold.co/600x400/E74C3C/white?text=Biryani",
+    "model": {
+      "glb": "models/biriyani-Optimized.glb",
+      "usdz": "models/biriyani.usdz"
+    }
+  }
+]
