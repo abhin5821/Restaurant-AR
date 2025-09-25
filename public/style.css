@@ -14,7 +14,7 @@
 body {
   font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
   margin: 0;
-  padding: 16px;
+  /* REMOVED padding from body to fix overflow */
   background: #f6f7fb;
   color: #222;
   display: flex;
@@ -22,11 +22,17 @@ body {
   align-items: center;
 }
 
-header { 
-  max-width: var(--max-width); 
-  width:100%; 
-  margin-bottom: 12px; 
+/* ADDED padding to header and main sections instead of the body */
+header, main {
+  width: 100%;
+  max-width: var(--max-width);
+  padding: 0 16px; /* Horizontal padding */
 }
+header {
+  margin-bottom: 12px;
+  padding-top: 16px; /* Vertical padding */
+}
+
 h1 { margin: 0 0 4px 0; font-size: 20px; }
 p { margin: 0; color: var(--muted); font-size: 14px; }
 
@@ -35,7 +41,6 @@ p { margin: 0; color: var(--muted); font-size: 14px; }
   grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
   gap: 16px;
   width: 100%;
-  max-width: var(--max-width);
   margin-top: 16px;
 }
 
@@ -66,15 +71,8 @@ p { margin: 0; color: var(--muted); font-size: 14px; }
 .desc { margin: 0 0 12px 0; color: var(--muted); font-size: 13px; flex: 1; }
 .card-footer { display: flex; justify-content: space-between; align-items: center; gap: 10px; }
 
-.btn-ar {
-  background: var(--accent);
-  color: #fff;
-  border: none;
-  padding: 8px 12px;
-  border-radius: 6px;
-  cursor: pointer;
-  font-weight: 600;
-}
+
+/* --- Overlay and Modal Styles --- */
 
 .overlay {
   position: fixed;
@@ -84,7 +82,7 @@ p { margin: 0; color: var(--muted); font-size: 14px; }
   align-items: center;
   justify-content: center;
   z-index: 9999;
-  padding: 10px; /* Reduced padding for mobile */
+  padding: 10px;
   opacity: 1;
   visibility: visible;
   transition: opacity 0.3s ease, visibility 0.3s ease;
@@ -98,13 +96,13 @@ p { margin: 0; color: var(--muted); font-size: 14px; }
 .overlay-inner {
   width: 100%;
   max-width: 900px;
-  height: 90vh; /* Responsive height */
+  height: 90vh;
   max-height: 700px;
   background: #fff;
   border-radius: 10px;
   overflow: hidden;
   display: flex;
-  flex-direction: column; /* Stack button and viewer vertically */
+  flex-direction: column;
 }
 
 .btn-close {
@@ -114,8 +112,48 @@ p { margin: 0; color: var(--muted); font-size: 14px; }
   color: #555;
   cursor: pointer;
   padding: 8px;
-  align-self: flex-end; /* Push to the right */
+  align-self: flex-end;
 }
+
+/* --- NEW AR Button Styling --- */
+
+/* Keyframes for the pulsing animation */
+@keyframes pulse {
+  0% { transform: translate(-50%, -50%) scale(1); }
+  50% { transform: translate(-50%, -50%) scale(1.05); }
+  100% { transform: translate(-50%, -50%) scale(1); }
+}
+
+#ar-button {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  background-color: rgba(0, 0, 0, 0.4);
+  color: white;
+  padding: 12px 24px;
+  border-radius: 50px; /* Makes it pill-shaped */
+  border: 1px solid rgba(255, 255, 255, 0.7);
+  font-weight: 600;
+  font-size: 16px;
+  cursor: pointer;
+  
+  /* Modern glass effect */
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+
+  /* Animation and Transition */
+  animation: pulse 2s infinite;
+  transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+#ar-button:hover {
+  background-color: rgba(0, 0, 0, 0.6);
+  animation-play-state: paused; /* Pause animation on hover */
+  transform: translate(-50%, -50%) scale(1.05); /* Slightly enlarge on hover */
+}
+
 
 @media (max-width: 600px) {
   header {

@@ -22,7 +22,7 @@
       <button id="closeBtn" class="btn-close" aria-label="Close AR viewer">✖</button>
       
       <model-viewer id="viewer"
-        style="width: 100%; height: 100%;"
+        style="width: 100%; height: 100%; position: relative;"
         camera-controls
         ar
         ar-placement="floor"
@@ -33,7 +33,7 @@
         loading="lazy"
         reveal="interaction">
 
-        <button slot="ar-button" id="ar-button" class="btn-ar">
+        <button slot="ar-button" id="ar-button">
           View in your space
         </button>
         
