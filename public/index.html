@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>AR Menu Prototype</title>
   <link rel="stylesheet" href="style.css">
   <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
@@ -19,141 +19,28 @@
 
   <div id="arOverlay" class="overlay hidden" role="dialog" aria-hidden="true">
     <div class="overlay-inner">
-      <button id="closeBtn" class="btn-close" aria-label="Close AR viewer">Close</button>
-
+      <button id="closeBtn" class="btn-close" aria-label="Close AR viewer">✖</button>
+      
       <model-viewer id="viewer"
-        style="width:100%; height:70vh;"
+        style="width: 100%; height: 100%;"
         camera-controls
         ar
+        ar-placement="floor"
         ar-modes="webxr scene-viewer quick-look unstable"
         alt="3D model of a food dish"
-        ar-placement="floor"
         disable-zoom
         disable-pan
-        
         loading="lazy"
         reveal="interaction">
 
         <button slot="ar-button" id="ar-button" class="btn-ar">
-    View in your space
+          View in your space
         </button>
-
+        
       </model-viewer>
     </div>
   </div>
 
-<script>
-  // --- DOM Elements ---
-  const grid = document.getElementById('menu');
-  const overlay = document.getElementById('arOverlay');
-  const viewer = document.getElementById('viewer');
-  const closeBtn = document.getElementById('closeBtn');
-
-  // --- Functions ---
-  async function loadMenu() {
-    console.log('1. Attempting to load menu.json...');
-    try {
-      const res = await fetch('/menu.json');
-      if (!res.ok) {
-        throw new Error(`Failed to fetch menu.json with status: ${res.status}`);
-      }
-      const items = await res.json();
-      console.log('2. Menu data loaded successfully:', items);
-
-      grid.innerHTML = ''; // Clear any previous content
-
-      items.forEach(item => {
-        const card = document.createElement('div');
-        card.className = 'card';
-        card.innerHTML = `
-          <img src="${item.thumbnail || ''}" alt="${item.name}" class="thumb" onerror="this.style.display='none'"/>
-          <div class="card-body">
-            <h3>${item.name}</h3>
-            <p class="desc">${item.desc}</p>
-            <div class="card-footer">
-              <strong>${item.currency} ${item.price}</strong>
-              <button class="btn-ar">View in AR</button>
-            </div>
-          </div>
-        `;
-        // Attach the full item data to the card element for easy access
-        card.dataset.item = JSON.stringify(item);
-        grid.appendChild(card);
-      });
-      console.log('3. Menu cards created and displayed.');
-    } catch (err) {
-      console.error('ERROR in loadMenu:', err);
-      grid.textContent = 'Failed to load menu. Please check the developer console for errors.';
-    }
-  }
-
-document.addEventListener('DOMContentLoaded', () => {
-  if (!document.querySelector('model-viewer').canActivateAR) {
-    document.body.classList.add('ar-is-not-supported');
-  }
-});
-
-  function handleARButtonClick(e) {
-    console.log('4. Click detected on the menu grid.');
-    const btn = e.target.closest('.btn-ar');
-
-    if (!btn) {
-      return; // Exit if the click was not on an AR button
-    }
-
-    console.log('5. AR button was clicked!');
-    const card = btn.closest('.card');
-    if (!card || !card.dataset.item) {
-      console.error('Could not find item data on the parent card element.');
-      return;
-    }
-
-    try {
-      const itemData = JSON.parse(card.dataset.item);
-      console.log('6. Parsed item data from card:', itemData);
-      openAR(itemData);
-    } catch (err) {
-      console.error('ERROR: Failed to parse item data from card:', err);
-    }
-  }
-
-  function openAR(item) {
-    console.log('7. Opening AR modal for item:', item.name);
-    if (!item?.model?.glb || !item?.model?.usdz) {
-      console.error('Item is missing required model paths (.glb or .usdz).', item);
-      alert('Sorry, the 3D model for this item is not available.');
-      return;
-    }
-
-    // Set the 3D model sources and poster image
-    viewer.src = item.model.glb;
-    viewer.iosSrc = item.model.usdz;
-    viewer.poster = item.thumbnail || '';
-    
-    console.log('8. Model-viewer attributes set:', { src: viewer.src, iosSrc: viewer.iosSrc });
-
-    // Show the overlay
-    overlay.classList.remove('hidden');
-    overlay.setAttribute('aria-hidden', 'false');
-    console.log('9. AR overlay is now visible.');
-  }
-
-  function closeAR() {
-    console.log('Closing AR modal.');
-    overlay.classList.add('hidden');
-    overlay.setAttribute('aria-hidden', 'true');
-    // Unload the model to free up memory and network resources
-    viewer.src = '';
-    viewer.iosSrc = '';
-    viewer.poster = '';
-  }
-
-  // --- Event Listeners ---
-  grid.addEventListener('click', handleARButtonClick);
-  closeBtn.addEventListener('click', closeAR);
-
-  // --- Initial Load ---
-  loadMenu();
-</script>
+  <script src="script.js" defer></script>
 </body>
 </html>
