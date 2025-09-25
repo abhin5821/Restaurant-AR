@@ -7,93 +7,83 @@ const closeBtn = document.getElementById('closeBtn');
 // --- Functions ---
 
 /**
- * Fetches menu data from menu.json and populates the grid.
+ * Fetches menu data and populates the Bootstrap grid.
  */
 async function loadMenu() {
   try {
     const res = await fetch('/menu.json');
-    if (!res.ok) {
-      throw new Error(`Failed to fetch menu.json with status: ${res.status}`);
-    }
+    if (!res.ok) throw new Error(`Failed to fetch: ${res.status}`);
     const items = await res.json();
 
-    grid.innerHTML = ''; // Clear any previous content
+    grid.innerHTML = ''; // Clear previous content
 
     items.forEach(item => {
-      const card = document.createElement('div');
-      card.className = 'card';
-      card.innerHTML = `
-        <img src="${item.thumbnail || ''}" alt="${item.name}" class="thumb" onerror="this.style.display='none'"/>
-        <div class="card-body">
-          <h3>${item.name}</h3>
-          <p class="desc">${item.desc}</p>
-          <div class="card-footer">
-            <strong>${item.currency} ${item.price}</strong>
-            <button class="btn-ar">View in AR</button>
+      // Create a Bootstrap column for each card
+      const col = document.createElement('div');
+      col.className = 'col-lg-4 col-md-6 mb-4 d-flex align-items-stretch';
+
+      // Use Bootstrap's card structure for better responsiveness
+      col.innerHTML = `
+        <div class="card w-100">
+          <img src="${item.thumbnail || ''}" class="card-img-top" alt="${item.name}" onerror="this.style.display='none'">
+          <div class="card-body d-flex flex-column">
+            <h5 class="card-title">${item.name}</h5>
+            <p class="card-text flex-grow-1">${item.desc}</p>
+            <div class="d-flex justify-content-between align-items-center mt-auto">
+              <strong>${item.currency} ${item.price}</strong>
+              <button class="btn btn-primary btn-ar">View in AR</button>
+            </div>
           </div>
         </div>
       `;
-      // Attach the full item data to the card element for easy access
-      card.dataset.item = JSON.stringify(item);
-      grid.appendChild(card);
+      // Attach the full item data to the column for the event listener
+      col.dataset.item = JSON.stringify(item);
+      grid.appendChild(col);
     });
   } catch (err) {
     console.error('ERROR in loadMenu:', err);
-    grid.textContent = 'Failed to load menu. Please check the developer console for errors.';
+    grid.innerHTML = '<p class="text-danger">Failed to load menu. Please try again later.</p>';
   }
 }
 
 /**
- * Handles clicks on the main menu grid, looking for clicks on AR buttons.
+ * Handles clicks on AR buttons within the grid.
  */
 function handleARButtonClick(e) {
   const btn = e.target.closest('.btn-ar');
+  if (!btn) return;
 
-  if (!btn) {
-    return; // Exit if the click was not on an AR button
-  }
-
-  const card = btn.closest('.card');
-  if (!card || !card.dataset.item) {
-    console.error('Could not find item data on the parent card element.');
-    return;
-  }
+  // Data is now on the column element
+  const col = btn.closest('.col-lg-4');
+  if (!col || !col.dataset.item) return;
 
   try {
-    const itemData = JSON.parse(card.dataset.item);
+    const itemData = JSON.parse(col.dataset.item);
     openAR(itemData);
   } catch (err) {
-    console.error('ERROR: Failed to parse item data from card:', err);
+    console.error('ERROR: Failed to parse item data:', err);
   }
 }
 
 /**
- * Opens the AR overlay and loads the selected 3D model.
+ * Opens the AR overlay and loads the 3D model.
  */
 function openAR(item) {
   if (!item?.model?.glb || !item?.model?.usdz) {
-    console.error('Item is missing required model paths (.glb or .usdz).', item);
     alert('Sorry, the 3D model for this item is not available.');
     return;
   }
-
-  // Set the 3D model sources and poster image for <model-viewer>
   viewer.src = item.model.glb;
   viewer.iosSrc = item.model.usdz;
   viewer.poster = item.thumbnail || '';
-  
-  // Show the overlay
   overlay.classList.remove('hidden');
-  overlay.setAttribute('aria-hidden', 'false');
 }
 
 /**
- * Closes the AR overlay and unloads the 3D model to save resources.
+ * Closes the AR overlay and unloads the model.
  */
 function closeAR() {
   overlay.classList.add('hidden');
-  overlay.setAttribute('aria-hidden', 'true');
-  // Unload the model to free up memory
   viewer.src = '';
   viewer.iosSrc = '';
   viewer.poster = '';
