@@ -7,8 +7,8 @@
     "currency": "INR",
     "thumbnail": "https://placehold.co/600x400/F39C12/white?text=Pizza",
     "model": {
-      "glb": "models/pizza-Optimized.glb",
-      "usdz": "models/Pizza.usdz"
+      "glb": "https://xfjjyws0gtmzdblj.public.blob.vercel-storage.com/Android/pizza-Optimized.glb",
+      "usdz": "https://xfjjyws0gtmzdblj.public.blob.vercel-storage.com/iOS/Pizza.usdz"
     }
   },
   {
@@ -19,8 +19,8 @@
     "currency": "INR",
     "thumbnail": "https://placehold.co/600x400/E74C3C/white?text=Biryani",
     "model": {
-      "glb": "models/biriyani-Optimized.glb",
-      "usdz": "models/biriyani.usdz"
+      "glb": "https://xfjjyws0gtmzdblj.public.blob.vercel-storage.com/Android/biriyani-Optimized.glb",
+      "usdz": "https://xfjjyws0gtmzdblj.public.blob.vercel-storage.com/iOS/biriyani.usdz"
     }
   }
 ]
