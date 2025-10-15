@@ -67,17 +67,31 @@ body, html {
   object-fit: cover;
 }
 
-/* **NEW** Media Query for Mobile UI Polish */
-@media (max-width: 576px) {
-  .card-title {
-    font-size: 1.1rem; /* Make title text smaller */
-  }
-  .card-text {
-    font-size: 0.9rem; /* Make description text smaller */
-  }
-  .card-body {
-    padding: 0.8rem; /* Reduce padding inside the card */
-  }
+/* **NEW** Loading Overlay Styles */
+.loading-overlay {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.7);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  z-index: 10000; /* Ensure it's on top of everything */
+}
+.spinner-border {
+  width: 3rem;
+  height: 3rem;
 }
 
-/* AR Overlay is removed, so no styles are needed */
+/* Media Query for Mobile UI Polish */
+@media (max-width: 576px) {
+  .card-title {
+    font-size: 1.1rem;
+  }
+  .card-text {
+    font-size: 0.9rem;
+  }
+  .card-body {
+    padding: 0.8rem;
+  }
+}

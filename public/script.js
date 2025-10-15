@@ -3,7 +3,8 @@ document.addEventListener('DOMContentLoaded', () => {
   // --- DOM Elements ---
   const welcomeView = document.getElementById('welcome-view');
   const menuView = document.getElementById('menu-view');
-  const arLauncher = document.getElementById('ar-launcher'); // The new hidden model-viewer
+  const loadingOverlay = document.getElementById('loading-overlay'); // New loader element
+  const arLauncher = document.getElementById('ar-launcher');
 
   const categoryButtonsContainer = document.getElementById('category-buttons');
   const menuItemsGrid = document.getElementById('menu-items-grid');
@@ -41,18 +42,16 @@ document.addEventListener('DOMContentLoaded', () => {
     menuItemsGrid.innerHTML = '';
 
     if (!items || items.length === 0) {
-        menuItemsGrid.innerHTML = '<p>No items found in this category.</p>';
-        return;
+      menuItemsGrid.innerHTML = '<p>No items found in this category.</p>';
+      return;
     }
 
-    // **PERFORMANCE: Preload the first model in the category**
     if (items[0].model.glb) {
       preloadModel(items[0].model.glb);
     }
 
     items.forEach(item => {
       const col = document.createElement('div');
-      // Added col-12 for explicit mobile stacking
       col.className = 'col-lg-4 col-md-6 col-12 mb-4 d-flex align-items-stretch';
       col.innerHTML = `
         <div class="card w-100">
@@ -83,32 +82,26 @@ document.addEventListener('DOMContentLoaded', () => {
     welcomeView.classList.remove('d-none');
   }
 
-  // --- **NEW** AR and Performance Functions ---
-  
-  /**
-   * Directly activates the AR experience using the hidden model-viewer.
-   * @param {object} item - The food item object.
-   */
+  // --- AR and Performance Functions ---
   function launchAR(item) {
     if (!item?.model?.glb) {
       alert('AR model not available for this item.');
       return;
     }
-    // Set the source of our hidden launcher
+    
+    // **FIX:** Show the loading indicator immediately on click
+    loadingOverlay.classList.remove('d-none');
+
     arLauncher.src = item.model.glb;
     arLauncher.iosSrc = item.model.usdz || '';
     
-    // Activate the AR experience
+    // This starts the background loading and AR activation
     arLauncher.activateAR();
   }
 
-  /**
-   * Injects a <link> tag into the head to start pre-downloading a model.
-   * @param {string} modelUrl - The URL of the .glb model to preload.
-   */
   function preloadModel(modelUrl) {
     const existingLink = document.querySelector(`link[href="${modelUrl}"]`);
-    if (existingLink) return; // Don't preload more than once
+    if (existingLink) return;
 
     const link = document.createElement('link');
     link.rel = 'preload';
@@ -130,7 +123,15 @@ document.addEventListener('DOMContentLoaded', () => {
     const arButton = e.target.closest('.btn-ar');
     if (arButton) {
       const item = JSON.parse(arButton.dataset.item);
-      launchAR(item); // Directly launch AR
+      launchAR(item);
+    }
+  });
+  
+  // **FIX:** Listen for model-viewer events to hide the loader
+  arLauncher.addEventListener('ar-status', (event) => {
+    // Hide the loading overlay when the AR session starts OR if it fails
+    if (event.detail.status === 'session-started' || event.detail.status === 'failed') {
+      loadingOverlay.classList.add('d-none');
     }
   });
 
