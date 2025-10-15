@@ -1,20 +1,16 @@
-
 document.addEventListener('DOMContentLoaded', () => {
 
   // --- DOM Elements ---
   const welcomeView = document.getElementById('welcome-view');
   const menuView = document.getElementById('menu-view');
-  const arOverlay = document.getElementById('arOverlay');
+  const arLauncher = document.getElementById('ar-launcher'); // The new hidden model-viewer
 
   const categoryButtonsContainer = document.getElementById('category-buttons');
   const menuItemsGrid = document.getElementById('menu-items-grid');
   const categoryTitle = document.getElementById('category-title');
   
   const backBtn = document.getElementById('back-to-categories-btn');
-  const closeArBtn = document.getElementById('closeBtn');
   const waiterBtn = document.getElementById('call-waiter-btn');
-  
-  const viewer = document.getElementById('viewer');
   
   let menuData = {};
 
@@ -24,7 +20,6 @@ document.addEventListener('DOMContentLoaded', () => {
       const res = await fetch('/menu.json');
       if (!res.ok) throw new Error('Could not load menu data.');
       menuData = await res.json();
-      
       populateCategoryButtons();
     } catch (error) {
       console.error(error);
@@ -43,16 +38,22 @@ document.addEventListener('DOMContentLoaded', () => {
   function displayMenuItems(category) {
     const items = menuData[category];
     categoryTitle.textContent = category;
-    menuItemsGrid.innerHTML = ''; // Clear previous items
+    menuItemsGrid.innerHTML = '';
 
     if (!items || items.length === 0) {
         menuItemsGrid.innerHTML = '<p>No items found in this category.</p>';
         return;
     }
 
+    // **PERFORMANCE: Preload the first model in the category**
+    if (items[0].model.glb) {
+      preloadModel(items[0].model.glb);
+    }
+
     items.forEach(item => {
       const col = document.createElement('div');
-      col.className = 'col-lg-4 col-md-6 mb-4 d-flex align-items-stretch';
+      // Added col-12 for explicit mobile stacking
+      col.className = 'col-lg-4 col-md-6 col-12 mb-4 d-flex align-items-stretch';
       col.innerHTML = `
         <div class="card w-100">
           <img src="${item.thumbnail}" class="card-img-top" alt="${item.name}">
@@ -82,31 +83,46 @@ document.addEventListener('DOMContentLoaded', () => {
     welcomeView.classList.remove('d-none');
   }
 
-  // --- AR Functionality ---
-  function openAR(item) {
-    if (!item?.model?.glb || !item?.model?.usdz) {
-      alert('Sorry, the 3D model for this item is not available.');
+  // --- **NEW** AR and Performance Functions ---
+  
+  /**
+   * Directly activates the AR experience using the hidden model-viewer.
+   * @param {object} item - The food item object.
+   */
+  function launchAR(item) {
+    if (!item?.model?.glb) {
+      alert('AR model not available for this item.');
       return;
     }
-    viewer.src = item.model.glb;
-    viewer.iosSrc = item.model.usdz;
-    viewer.poster = item.thumbnail || '';
-    arOverlay.classList.remove('hidden');
+    // Set the source of our hidden launcher
+    arLauncher.src = item.model.glb;
+    arLauncher.iosSrc = item.model.usdz || '';
+    
+    // Activate the AR experience
+    arLauncher.activateAR();
   }
 
-  function closeAR() {
-    arOverlay.classList.add('hidden');
-    viewer.src = '';
-    viewer.iosSrc = '';
-    viewer.poster = '';
+  /**
+   * Injects a <link> tag into the head to start pre-downloading a model.
+   * @param {string} modelUrl - The URL of the .glb model to preload.
+   */
+  function preloadModel(modelUrl) {
+    const existingLink = document.querySelector(`link[href="${modelUrl}"]`);
+    if (existingLink) return; // Don't preload more than once
+
+    const link = document.createElement('link');
+    link.rel = 'preload';
+    link.href = modelUrl;
+    link.as = 'fetch';
+    link.crossOrigin = "anonymous";
+    document.head.appendChild(link);
   }
 
   // --- Event Listeners ---
   categoryButtonsContainer.addEventListener('click', (e) => {
-    const categoryButton = e.target.closest('button');
+    const categoryButton = e.target.closest('button[data-category]');
     if (categoryButton) {
-      const category = categoryButton.dataset.category;
-      showMenuView(category);
+      showMenuView(categoryButton.dataset.category);
     }
   });
 
@@ -114,15 +130,12 @@ document.addEventListener('DOMContentLoaded', () => {
     const arButton = e.target.closest('.btn-ar');
     if (arButton) {
       const item = JSON.parse(arButton.dataset.item);
-      openAR(item);
+      launchAR(item); // Directly launch AR
     }
   });
 
   backBtn.addEventListener('click', showWelcomeView);
-  closeArBtn.addEventListener('click', closeAR);
-  waiterBtn.addEventListener('click', () => {
-    alert('Calling the waiter!'); // Placeholder action
-  });
+  waiterBtn.addEventListener('click', () => alert('Calling the waiter!'));
 
   // --- Start the App ---
   initializeApp();

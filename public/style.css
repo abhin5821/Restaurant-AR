@@ -67,35 +67,17 @@ body, html {
   object-fit: cover;
 }
 
-/* AR Overlay Styles */
-.overlay {
-  position: fixed;
-  inset: 0;
-  background: rgba(0,0,0,0.65);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 9999;
-  padding: 10px;
-  opacity: 1;
-  visibility: visible;
-  transition: opacity 0.3s ease, visibility 0.3s ease;
+/* **NEW** Media Query for Mobile UI Polish */
+@media (max-width: 576px) {
+  .card-title {
+    font-size: 1.1rem; /* Make title text smaller */
+  }
+  .card-text {
+    font-size: 0.9rem; /* Make description text smaller */
+  }
+  .card-body {
+    padding: 0.8rem; /* Reduce padding inside the card */
+  }
 }
-.overlay.hidden {
-  opacity: 0;
-  visibility: hidden;
-}
-.overlay-inner {
-  width: 100%;
-  max-width: 900px;
-  height: 90vh;
-  background: #fff;
-  border-radius: 10px;
-  overflow: hidden;
-  display: flex;
-  flex-direction: column;
-}
-#viewer {
-  width: 100%;
-  flex-grow: 1;
-}
+
+/* AR Overlay is removed, so no styles are needed */
