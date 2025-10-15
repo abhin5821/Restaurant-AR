@@ -3,7 +3,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // --- DOM Elements ---
   const welcomeView = document.getElementById('welcome-view');
   const menuView = document.getElementById('menu-view');
-  const loadingOverlay = document.getElementById('loading-overlay'); // New loader element
+  const loadingOverlay = document.getElementById('loading-overlay');
   const arLauncher = document.getElementById('ar-launcher');
 
   const categoryButtonsContainer = document.getElementById('category-buttons');
@@ -12,6 +12,7 @@ document.addEventListener('DOMContentLoaded', () => {
   
   const backBtn = document.getElementById('back-to-categories-btn');
   const waiterBtn = document.getElementById('call-waiter-btn');
+  const cancelArBtn = document.getElementById('cancel-ar-btn'); // New cancel button
   
   let menuData = {};
 
@@ -89,14 +90,18 @@ document.addEventListener('DOMContentLoaded', () => {
       return;
     }
     
-    // **FIX:** Show the loading indicator immediately on click
     loadingOverlay.classList.remove('d-none');
-
     arLauncher.src = item.model.glb;
     arLauncher.iosSrc = item.model.usdz || '';
-    
-    // This starts the background loading and AR activation
     arLauncher.activateAR();
+  }
+
+  // **NEW** Function to cancel AR loading
+  function cancelARLoading() {
+    loadingOverlay.classList.add('d-none');
+    // By clearing the src, we stop the browser from continuing to download the model
+    arLauncher.src = '';
+    arLauncher.iosSrc = '';
   }
 
   function preloadModel(modelUrl) {
@@ -127,9 +132,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
   
-  // **FIX:** Listen for model-viewer events to hide the loader
   arLauncher.addEventListener('ar-status', (event) => {
-    // Hide the loading overlay when the AR session starts OR if it fails
     if (event.detail.status === 'session-started' || event.detail.status === 'failed') {
       loadingOverlay.classList.add('d-none');
     }
@@ -137,6 +140,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   backBtn.addEventListener('click', showWelcomeView);
   waiterBtn.addEventListener('click', () => alert('Calling the waiter!'));
+  cancelArBtn.addEventListener('click', cancelARLoading); // New event listener for the cancel button
 
   // --- Start the App ---
   initializeApp();

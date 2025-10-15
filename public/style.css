@@ -67,7 +67,7 @@ body, html {
   object-fit: cover;
 }
 
-/* **NEW** Loading Overlay Styles */
+/* Loading Overlay Styles */
 .loading-overlay {
   position: fixed;
   inset: 0;
@@ -76,11 +76,19 @@ body, html {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  z-index: 10000; /* Ensure it's on top of everything */
+  z-index: 10000;
 }
 .spinner-border {
   width: 3rem;
   height: 3rem;
+}
+
+/* **ADDED** Style for the cancel button */
+#cancel-ar-btn {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  font-size: 1.5rem; /* Makes the X larger and easier to tap */
 }
 
 /* Media Query for Mobile UI Polish */
