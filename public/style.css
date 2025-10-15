@@ -1,13 +1,59 @@
-/* styles.css */
-:root {
-  --card-bg: #fff;
+/* General Body & Welcome Page Styling */
+body, html {
+  height: 100%;
+  margin: 0;
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
 }
 
-body {
-  background-color: #f8f9fa; /* A standard light gray from Bootstrap */
+#welcome-view {
+  min-height: 100vh;
+  background: url('https://placehold.co/1920x1080/2c3e50/34495e?text=Restaurant+Background') no-repeat center center/cover;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
 }
 
-/* --- Override Bootstrap card styling slightly for our hover effect --- */
+#welcome-view h1 {
+  font-weight: 800;
+  letter-spacing: 0.1em;
+}
+
+/* Category & Waiter Buttons */
+#category-buttons .btn {
+  padding: 0.75rem 1.5rem;
+  font-size: 1.1rem;
+  font-weight: 600;
+  border-radius: 50px;
+}
+
+#call-waiter-btn {
+  border-radius: 50px;
+  border-width: 2px;
+}
+
+/* Social Media Icons */
+.social-icons a {
+  color: white;
+  font-size: 1.5rem;
+  margin: 0 15px;
+  text-decoration: none;
+  transition: opacity 0.2s;
+}
+.social-icons a:hover {
+  opacity: 0.7;
+}
+
+/* Menu View Styles */
+#menu-view {
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
 .card {
   transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
 }
@@ -21,8 +67,7 @@ body {
   object-fit: cover;
 }
 
-/* --- Overlay and Modal Styles --- */
-
+/* AR Overlay Styles */
 .overlay {
   position: fixed;
   inset: 0;
@@ -36,26 +81,21 @@ body {
   visibility: visible;
   transition: opacity 0.3s ease, visibility 0.3s ease;
 }
-
 .overlay.hidden {
   opacity: 0;
   visibility: hidden;
 }
-
 .overlay-inner {
   width: 100%;
   max-width: 900px;
   height: 90vh;
-  max-height: 700px;
   background: #fff;
   border-radius: 10px;
   overflow: hidden;
   display: flex;
-  flex-direction: column; /* Stack button and viewer vertically */
+  flex-direction: column;
 }
-
-/* --- Repositioned AR Button --- */
-#ar-button {
-  flex-shrink: 0; /* Prevent the button from shrinking */
-  display: block;
+#viewer {
+  width: 100%;
+  flex-grow: 1;
 }
