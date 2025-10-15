@@ -12,8 +12,10 @@ document.addEventListener('DOMContentLoaded', () => {
   
   const backBtn = document.getElementById('back-to-categories-btn');
   const waiterBtn = document.getElementById('call-waiter-btn');
-  const cancelArBtn = document.getElementById('cancel-ar-btn'); // New cancel button
+  const cancelArBtn = document.getElementById('cancel-ar-btn');
   
+  // **NEW** Helper to detect if the user is on iOS
+  const isIOS = /iPhone|iPad|iPod/i.test(navigator.userAgent);
   let menuData = {};
 
   // --- Main Function to Initialize ---
@@ -84,22 +86,31 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // --- AR and Performance Functions ---
+  
+  /**
+   * **REWRITTEN** to handle iOS and Chrome/Android differently.
+   */
   function launchAR(item) {
     if (!item?.model?.glb) {
       alert('AR model not available for this item.');
       return;
     }
     
-    loadingOverlay.classList.remove('d-none');
     arLauncher.src = item.model.glb;
     arLauncher.iosSrc = item.model.usdz || '';
-    arLauncher.activateAR();
+
+    if (isIOS) {
+      // On iPhones, activate immediately to show the native prompt.
+      arLauncher.activateAR();
+    } else {
+      // On Android/Chrome, show our custom loader first.
+      // The 'load' event listener below will handle activating AR.
+      loadingOverlay.classList.remove('d-none');
+    }
   }
 
-  // **NEW** Function to cancel AR loading
   function cancelARLoading() {
     loadingOverlay.classList.add('d-none');
-    // By clearing the src, we stop the browser from continuing to download the model
     arLauncher.src = '';
     arLauncher.iosSrc = '';
   }
@@ -131,7 +142,28 @@ document.addEventListener('DOMContentLoaded', () => {
       launchAR(item);
     }
   });
+
+  /**
+   * **NEW** This listener waits for the model to finish loading.
+   * On Chrome, it then activates AR.
+   */
+  arLauncher.addEventListener('load', () => {
+    if (!isIOS) {
+      arLauncher.activateAR();
+    }
+  });
+
+  /**
+   * **NEW** This listener handles errors if the model fails to load.
+   */
+  arLauncher.addEventListener('error', () => {
+    cancelARLoading(); // Hide the loader
+    alert('Sorry, there was an error loading the 3D model.');
+  });
   
+  /**
+   * **UPDATED** This now reliably hides the loader when the AR session truly starts.
+   */
   arLauncher.addEventListener('ar-status', (event) => {
     if (event.detail.status === 'session-started' || event.detail.status === 'failed') {
       loadingOverlay.classList.add('d-none');
@@ -140,7 +172,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   backBtn.addEventListener('click', showWelcomeView);
   waiterBtn.addEventListener('click', () => alert('Calling the waiter!'));
-  cancelArBtn.addEventListener('click', cancelARLoading); // New event listener for the cancel button
+  cancelArBtn.addEventListener('click', cancelARLoading);
 
   // --- Start the App ---
   initializeApp();
