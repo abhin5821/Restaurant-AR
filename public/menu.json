@@ -1,33 +1,11 @@
 {
   "Sides/Chicken": [
     {
-      "name": "Croissants fresh baked",
-      "desc": "Juicy chicken breast grilled to perfection with herbs and spices.",
-      "price": 350,
-      "currency": "INR",
-      "thumbnail": "https://placehold.co/600x400/7f8c8d/white?text=Grilled+Chicken",
-      "model": {
-        "glb": "https://xfjjyws0gtmzdblj.public.blob.vercel-storage.com/Android/Croissants%2C%20fresh%20baked-Optimized.glb",
-        "usdz": "https://xfjjyws0gtmzdblj.public.blob.vercel-storage.com/iOS/Croissants%2C%20fresh%20baked.usdz"
-      }
-    },
-    {
-      "name": "DexH-GingerBread house",
-      "desc": "Seafood or vegetables that have been battered and deep fried.",
-      "price": 450,
-      "currency": "INR",
-      "thumbnail": "https://placehold.co/600x400/f1c40f/white?text=Tempura",
-      "model": {
-        "glb": "https://xfjjyws0gtmzdblj.public.blob.vercel-storage.com/Android/DexH-GingerBread%20house%20made%20by%20TheKitchenFairy-Optimized.glb",
-        "usdz": "https://xfjjyws0gtmzdblj.public.blob.vercel-storage.com/iOS/DexH-GingerBread%20house%20made%20by%20TheKitchenFairy.usdz"
-      }
-    },
-    {
       "name": "Shredded Cheese Mound",
-      "desc": "Seafood or vegetables that have been battered and deep fried.",
+      "desc": "A generous mound of freshly shredded cheese, perfect for melting or topping dishes.",
       "price": 450,
       "currency": "INR",
-      "thumbnail": "https://placehold.co/600x400/f1c40f/white?text=Tempura",
+      "thumbnail": "https://placehold.co/600x400/f1c40f/white?text=Shredded+Cheese+Mound",
       "model": {
         "glb": "https://xfjjyws0gtmzdblj.public.blob.vercel-storage.com/Android/Shredded%20Cheese%20Mound-Optimized.glb",
         "usdz": "https://xfjjyws0gtmzdblj.public.blob.vercel-storage.com/iOS/Shredded%20Cheese%20Mound.usdz"
@@ -35,10 +13,10 @@
     },
     {
       "name": "Teriyaki Chicken",
-      "desc": "Seafood or vegetables that have been battered and deep fried.",
+      "desc": "Tender chicken glazed with sweet and savory teriyaki sauce, served with steamed rice.",
       "price": 450,
       "currency": "INR",
-      "thumbnail": "https://placehold.co/600x400/f1c40f/white?text=Tempura",
+      "thumbnail": "https://placehold.co/600x400/f1c40f/white?text=Teriyaki+Chicken",
       "model": {
         "glb": "https://xfjjyws0gtmzdblj.public.blob.vercel-storage.com/Android/Teriyaki%20Chicken-Optimized.glb",
         "usdz": "https://xfjjyws0gtmzdblj.public.blob.vercel-storage.com/iOS/Teriyaki%20Chicken.usdz"
@@ -46,10 +24,10 @@
     },
     {
       "name": "Tandoori Chicken",
-      "desc": "Seafood or vegetables that have been battered and deep fried.",
+      "desc": "Traditional Indian-style chicken marinated in yogurt and spices, roasted in a tandoor.",
       "price": 450,
       "currency": "INR",
-      "thumbnail": "https://placehold.co/600x400/f1c40f/white?text=Tempura",
+      "thumbnail": "https://placehold.co/600x400/f1c40f/white?text=Tandoori+Chicken",
       "model": {
         "glb": "https://xfjjyws0gtmzdblj.public.blob.vercel-storage.com/Android/chicken-whole-Optimized.glb",
         "usdz": "https://xfjjyws0gtmzdblj.public.blob.vercel-storage.com/iOS/chicken-whole.usdz"
@@ -61,10 +39,10 @@
   "Pizza/Burger/Pasta": [
     {
       "name": "Delicious Peperoni Pizza",
-      "desc": "A classic Italian dish with a round, flat base of leavened wheat-based dough.",
+      "desc": "Classic pizza topped with spicy pepperoni, melted mozzarella, and savory tomato sauce.",
       "price": 400,
       "currency": "INR",
-      "thumbnail": "https://placehold.co/600x400/e67e22/white?text=Pizza",
+      "thumbnail": "https://placehold.co/600x400/e67e22/white?text=Delicious+Peperoni+Pizza",
       "model": {
         "glb": "https://xfjjyws0gtmzdblj.public.blob.vercel-storage.com/Android/Delicious%20Peperoni%20Pizza-Optimized.glb",
         "usdz": "https://xfjjyws0gtmzdblj.public.blob.vercel-storage.com/iOS/Delicious%20Peperoni%20Pizza.usdz"
@@ -94,10 +72,10 @@
     },
     {
       "name": "Small Pizza",
-      "desc": "Wide, flat pasta layered with sauces and cheese, an Italian classic.",
+      "desc": "Personal-sized pizza with your choice of toppings, perfect for one person.",
       "price": 380,
       "currency": "INR",
-      "thumbnail": "https://placehold.co/600x400/c0392b/white?text=Lasagna",
+      "thumbnail": "https://placehold.co/600x400/c0392b/white?text=Small+Pizza",
       "model": {
         "glb": "https://xfjjyws0gtmzdblj.public.blob.vercel-storage.com/Android/Small%20pizza%20photogrammetry-Optimized.glb",
         "usdz": "https://xfjjyws0gtmzdblj.public.blob.vercel-storage.com/iOS/Small%20pizza%20photogrammetry.usdz"
@@ -105,32 +83,21 @@
     },
     {
       "name": "Paasta combo",
-      "desc": "A classic Italian dish with a round, flat base of leavened wheat-based dough.",
+      "desc": "A combination platter featuring various pasta dishes with assorted sauces and sides.",
       "price": 400,
       "currency": "INR",
-      "thumbnail": "https://placehold.co/600x400/e67e22/white?text=Pizza",
+      "thumbnail": "https://placehold.co/600x400/e67e22/white?text=Paasta+combo",
       "model": {
         "glb": "https://xfjjyws0gtmzdblj.public.blob.vercel-storage.com/Android/paasta-sides-Optimized.glb",
         "usdz": "https://xfjjyws0gtmzdblj.public.blob.vercel-storage.com/iOS/paasta-sides.usdz"
       }
     },
     {
-      "name": "Pizza",
-      "desc": "A classic Italian dish with a round, flat base of leavened wheat-based dough.",
-      "price": 400,
-      "currency": "INR",
-      "thumbnail": "https://placehold.co/600x400/e67e22/white?text=Pizza",
-      "model": {
-        "glb": "",
-        "usdz": ""
-      }
-    },
-    {
       "name": "Sliced Pizza",
-      "desc": "A classic Italian dish with a round, flat base of leavened wheat-based dough.",
+      "desc": "Large pizza cut into generous slices, ideal for sharing or take-away.",
       "price": 400,
       "currency": "INR",
-      "thumbnail": "https://placehold.co/600x400/e67e22/white?text=Pizza",
+      "thumbnail": "https://placehold.co/600x400/e67e22/white?text=Sliced+Pizza",
       "model": {
         "glb": "https://xfjjyws0gtmzdblj.public.blob.vercel-storage.com/Android/sliced-pizza-Optimized.glb",
         "usdz": "https://xfjjyws0gtmzdblj.public.blob.vercel-storage.com/iOS/sliced-pizza.usdz"
@@ -138,10 +105,10 @@
     },
     {
       "name": "Sandwitch",
-      "desc": "A classic Italian dish with a round, flat base of leavened wheat-based dough.",
+      "desc": "Freshly prepared sandwich with your choice of fillings and condiments.",
       "price": 400,
       "currency": "INR",
-      "thumbnail": "https://placehold.co/600x400/e67e22/white?text=Pizza",
+      "thumbnail": "https://placehold.co/600x400/e67e22/white?text=Sandwitch",
       "model": {
         "glb": "https://xfjjyws0gtmzdblj.public.blob.vercel-storage.com/Android/Sandwich-Optimized.glb",
         "usdz": "https://xfjjyws0gtmzdblj.public.blob.vercel-storage.com/iOS/Sandwich.usdz"
@@ -152,10 +119,10 @@
   "Desserts": [
     {
       "name": "Tiramisu cake",
-      "desc": "A milk-solid-based sweet from the Indian subcontinent.",
+      "desc": "Italian dessert made with coffee-soaked ladyfingers and mascarpone cream.",
       "price": 120,
       "currency": "INR",
-      "thumbnail": "https://placehold.co/600x400/8e44ad/white?text=Gulab+Jamun",
+      "thumbnail": "https://placehold.co/600x400/8e44ad/white?text=Tiramisu+cake",
       "model": {
         "glb": "https://xfjjyws0gtmzdblj.public.blob.vercel-storage.com/Android/Food%20-%20Tiramisu%20Cake-Optimized.glb",
         "usdz": "https://xfjjyws0gtmzdblj.public.blob.vercel-storage.com/iOS/Food%20-%20Tiramisu%20Cake.usdz"
@@ -163,10 +130,10 @@
     },
     {
       "name": "Japanese creme brulee",
-      "desc": "A sweetened frozen food typically eaten as a snack or dessert.",
+      "desc": "A Japanese twist on classic crème brûlée with a delicate caramelized sugar top.",
       "price": 150,
       "currency": "INR",
-      "thumbnail": "https://placehold.co/600x400/3498db/white?text=Ice+Cream",
+      "thumbnail": "https://placehold.co/600x400/3498db/white?text=Japanese+creme+brulee",
       "model": {
         "glb": "https://xfjjyws0gtmzdblj.public.blob.vercel-storage.com/Android/Japanese%20creme%20brulee-Optimized.glb",
         "usdz": "https://xfjjyws0gtmzdblj.public.blob.vercel-storage.com/iOS/Japanese%20creme%20brulee.usdz"
@@ -174,10 +141,10 @@
     },
     {
       "name": "Lilac cake",
-      "desc": "A sweetened frozen food typically eaten as a snack or dessert.",
+      "desc": "Beautiful layered cake with lilac-flavored frosting and delicate floral decorations.",
       "price": 150,
       "currency": "INR",
-      "thumbnail": "https://placehold.co/600x400/3498db/white?text=Ice+Cream",
+      "thumbnail": "https://placehold.co/600x400/3498db/white?text=Lilac+cake",
       "model": {
         "glb": "https://xfjjyws0gtmzdblj.public.blob.vercel-storage.com/Android/Lilac%20Cake%20by%20Windowsill%20Bakery%20%28splat%29-Optimized.glb",
         "usdz": "https://xfjjyws0gtmzdblj.public.blob.vercel-storage.com/iOS/Lilac%20Cake%20by%20Windowsill%20Bakery%20%28splat%29.usdz"
@@ -185,10 +152,10 @@
     },
     {
       "name": "Napolean cake",
-      "desc": "A sweetened frozen food typically eaten as a snack or dessert.",
+      "desc": "Classic French mille-feuille with layers of puff pastry, cream, and powdered sugar.",
       "price": 150,
       "currency": "INR",
-      "thumbnail": "https://placehold.co/600x400/3498db/white?text=Ice+Cream",
+      "thumbnail": "https://placehold.co/600x400/3498db/white?text=Napolean+cake",
       "model": {
         "glb": "https://xfjjyws0gtmzdblj.public.blob.vercel-storage.com/Android/Napoleon%20Cake-Optimized.glb",
         "usdz": "https://xfjjyws0gtmzdblj.public.blob.vercel-storage.com/iOS/Napoleon%20Cake.usdz"
@@ -196,10 +163,10 @@
     },
     {
       "name": "Sweet Box",
-      "desc": "A sweetened frozen food typically eaten as a snack or dessert.",
+      "desc": "Assortment of delicious desserts and sweets in a beautifully packaged box.",
       "price": 150,
       "currency": "INR",
-      "thumbnail": "https://placehold.co/600x400/3498db/white?text=Ice+Cream",
+      "thumbnail": "https://placehold.co/600x400/3498db/white?text=Sweet+Box",
       "model": {
         "glb": "https://xfjjyws0gtmzdblj.public.blob.vercel-storage.com/Android/SweetBox-Optimized.glb",
         "usdz": "https://xfjjyws0gtmzdblj.public.blob.vercel-storage.com/iOS/Spicy%20Ramen.usdz"
@@ -210,10 +177,10 @@
   "Other Cuisines": [
     {
       "name": "Fried noodles",
-      "desc": "A crispy, savory pancake from the Indian subcontinent.",
+      "desc": "Stir-fried noodles with mixed vegetables and vegan chicken in a savory sauce.",
       "price": 140,
       "currency": "INR",
-      "thumbnail": "https://placehold.co/600x400/f39c12/white?text=Dosa",
+      "thumbnail": "https://placehold.co/600x400/f39c12/white?text=Fried+noodles",
       "model": {
         "glb": "https://xfjjyws0gtmzdblj.public.blob.vercel-storage.com/Android/Fried%20noodles%20with%20vegetables%20and%20%28vegan%29%20chicken-Optimized.glb",
         "usdz": "https://xfjjyws0gtmzdblj.public.blob.vercel-storage.com/iOS/Fried%20noodles%20with%20vegetables%20and%20%28vegan%29%20chicken.usdz"
@@ -221,10 +188,10 @@
     },
     {
       "name": "Ramen",
-      "desc": "A mixed rice dish originating among the Muslims of the Indian subcontinent.",
+      "desc": "Japanese noodle soup with rich broth, tender meat, and fresh vegetables.",
       "price": 280,
       "currency": "INR",
-      "thumbnail": "https://placehold.co/600x400/e74c3c/white?text=Biryani",
+      "thumbnail": "https://placehold.co/600x400/e74c3c/white?text=Ramen",
       "model": {
         "glb": "https://xfjjyws0gtmzdblj.public.blob.vercel-storage.com/Android/Ramen-Optimized.glb",
         "usdz": "https://xfjjyws0gtmzdblj.public.blob.vercel-storage.com/iOS/Ramen.usdz"
@@ -232,10 +199,10 @@
     },
     {
       "name": "Spicy ramen",
-      "desc": "Stir-fried noodles with a variety of vegetables and sauces.",
+      "desc": "Hot and spicy ramen with chili oil, tender meat, and fresh vegetables.",
       "price": 180,
       "currency": "INR",
-      "thumbnail": "https://placehold.co/600x400/3498db/white?text=Noodles",
+      "thumbnail": "https://placehold.co/600x400/3498db/white?text=Spicy+ramen",
       "model": {
         "glb": "https://xfjjyws0gtmzdblj.public.blob.vercel-storage.com/Android/Spicy%20Ramen-Optimized.glb",
         "usdz": "https://xfjjyws0gtmzdblj.public.blob.vercel-storage.com/iOS/Spicy%20Ramen.usdz"
@@ -243,10 +210,10 @@
     },
     {
       "name": "Vietnamese-spl",
-      "desc": "A Japanese dish of prepared vinegared rice with a variety of ingredients.",
+      "desc": "Special Vietnamese dish featuring fresh herbs, rice noodles, and signature sauces.",
       "price": 600,
       "currency": "INR",
-      "thumbnail": "https://placehold.co/600x400/1abc9c/white?text=Sushi",
+      "thumbnail": "https://placehold.co/600x400/1abc9c/white?text=Vietnamese-spl",
       "model": {
         "glb": "https://xfjjyws0gtmzdblj.public.blob.vercel-storage.com/Android/Vietnamese-spl%20food-Optimized.glb",
         "usdz": "https://xfjjyws0gtmzdblj.public.blob.vercel-storage.com/iOS/Vietnamese-spl%20food.usdz"
@@ -254,10 +221,10 @@
     },
     {
       "name": "japan-meal",
-      "desc": "A traditional Mexican dish with a small corn or wheat tortilla topped with a filling.",
+      "desc": "Traditional Japanese set meal with rice, miso soup, and various side dishes.",
       "price": 300,
       "currency": "INR",
-      "thumbnail": "https://placehold.co/600x400/e67e22/white?text=Tacos",
+      "thumbnail": "https://placehold.co/600x400/e67e22/white?text=japan-meal",
       "model": {
         "glb": "https://xfjjyws0gtmzdblj.public.blob.vercel-storage.com/Android/japan-meal-Optimized.glb",
         "usdz": "https://xfjjyws0gtmzdblj.public.blob.vercel-storage.com/iOS/japan-meal.usdz"
@@ -265,10 +232,10 @@
     },
     {
       "name": "noodles",
-      "desc": "A central Thai variety of curry, green in color from fresh chili peppers.",
+      "desc": "Classic Asian-style noodles with vegetables and your choice of sauce.",
       "price": 380,
       "currency": "INR",
-      "thumbnail": "https://placehold.co/600x400/2ecc71/white?text=Green+Curry",
+      "thumbnail": "https://placehold.co/600x400/2ecc71/white?text=noodles",
       "model": {
         "glb": "https://xfjjyws0gtmzdblj.public.blob.vercel-storage.com/Android/noodles-Optimized.glb",
         "usdz": "https://xfjjyws0gtmzdblj.public.blob.vercel-storage.com/iOS/noodles.usdz"
