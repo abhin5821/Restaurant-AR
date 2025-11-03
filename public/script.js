@@ -49,9 +49,9 @@ document.addEventListener('DOMContentLoaded', () => {
       return;
     }
 
-    if (items[0].model.glb) {
-      preloadModel(items[0].model.glb);
-    }
+    // if (items[0].model.glb) {
+    //   preloadModel(items[0].model.glb);
+    // }
 
     items.forEach(item => {
       const col = document.createElement('div');
