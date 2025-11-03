@@ -99,14 +99,9 @@ document.addEventListener('DOMContentLoaded', () => {
     arLauncher.src = item.model.glb;
     arLauncher.iosSrc = item.model.usdz || '';
 
-    if (isIOS) {
-      // On iPhones, activate immediately to show the native prompt.
-      arLauncher.activateAR();
-    } else {
-      // On Android/Chrome, show our custom loader first.
-      // The 'load' event listener below will handle activating AR.
-      loadingOverlay.classList.remove('d-none');
-    }
+    // Activate AR immediately for ALL devices.
+    // This will launch Scene Viewer on Android or Quick Look on iOS.
+    arLauncher.activateAR();
   }
 
   function cancelARLoading() {
